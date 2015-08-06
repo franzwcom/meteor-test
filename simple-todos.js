@@ -8,6 +8,14 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.body.helpers({
+    tasks: [
+      { text: "This is jack ass" },
+      { text: "guachineo" },
+      { text: "Time to go to sleep" }
+    ]
+  });
+
   Template.hello.events({
     'click button': function () {
       // increment the counter when button is clicked
