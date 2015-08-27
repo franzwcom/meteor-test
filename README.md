@@ -1,5 +1,6 @@
-# meteor-test
+# Testing Meteor
+
 just testing meteor
 
 
-# Run meteor with cmd 
+# Run Meteor with CMD 
