@@ -7,18 +7,28 @@
 </head>
 
 <body>
-  <div class="container">
-  	<div class="jumbotron">
-  		<h1>Welcome to Meteor!</h1>
+   <div class="container">
+    <header>
+      <h1>Todo List <span class="badge">{{ incompleteCount }}</span></h1>
+      <label class="hide-completed">
+        <input type="checkbox" checked="{{hideCompleted}}">
+        Hide Completed Tasks
+      </label>
 
+      {{> loginButtons}} 
 
-  	</div>
-  	<hr>
-  	  {{> hello}}
+      {{#if currentUser}}
+        <form class="new-task">
+          <input class="form-control" type="text" name="text" placeholder="Type to add new tasks" />
+        </form>
+      {{/if}}
 
-      <ul>
+    </header>
+ 
+      <ul class="list-group">
         {{#each tasks}}
-            {{> task}}
+        <li class="list-group-item"> {{> task}} </li>
+          
         {{/each}}
       </ul>
   </div>
@@ -28,14 +38,22 @@
 
 </body>
 
-<template name="hello">
-  <button class="btn btn-danger">Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-
 <template name="task">
-  <li>{{text}}</li>
+  <li class="{{#if checked}}checked{{/if}} {{#if private}}private{{/if}}">
+    <button class="delete">&times;  </button>
+ 
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+
+     {{#if isOwner}}
+      <button class=" btn btn-primary btn-sm toggle-private">
+        {{#if private}}
+          Private
+        {{else}}
+          Public
+        {{/if}}
+      </button>
+    {{/if}}
+ 
+    <span class="text"> <strong>{{username}}</strong> - {{text}}</span>
+  </li>
 </template>
-
-
-
